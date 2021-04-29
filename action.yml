@@ -21,10 +21,6 @@
 name: 'Carthage Bootstrap'
 description: 'Bootstrap and cache Carthage dependencies.'
 
-branding:
-  icon: 'command'
-  color: 'blue'
-
 inputs:
   github-token:
     description: "GitHub Access Token uses for fetching dependencies."
@@ -33,16 +29,13 @@ inputs:
   platform:
     description: "The platforms to build for. One of 'all', 'macOS', 'iOS', 'watchOS', 'tvOS', or comma-separated values of the formers except for 'all'."
     required: false
+
   no-use-binaries:
     description: "Do not use downloaded binaries when possible."
     required: false
 
-  cache:
-    description: "Cache the Carthage directory."
-    required: false
-    default: true
-  cache-key:
-    description: "Key under which to cache the Carthage directory. Will be generated if not specified."
+  use-xcframeworks:
+    description: "Create xcframework bundles instead of one framework per platform (requires Xcode 12+)."
     required: false
 
   verbose:
@@ -53,5 +46,3 @@ inputs:
 runs:
   using: 'node12'
   main: 'dist/index.js'
-  post: 'dist/index.js'
-  post-if: 'success()'

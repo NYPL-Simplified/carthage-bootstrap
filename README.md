@@ -12,7 +12,7 @@ The action currently only supports downloading of dependencies through the GitHu
 
 ```yaml
 - name: "Carthage Bootstrap"
-  uses: devbotsxyz/carthage-bootstrap@v1
+  uses: ettore/carthage-bootstrap@v1
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -25,7 +25,7 @@ name: Test
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   Test:
@@ -35,26 +35,15 @@ jobs:
       - name: "Checkout Project"
         uses: actions/checkout@v2
 
-      - name: "Select Latest Xcode"
-        uses: devbotsxyz/xcode-select@master
-
       - name: "Carthage Bootstrap"
-        uses: devbotsxyz/carthage-bootstrap@main
+        uses: ettore/carthage-bootstrap@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           platform: macOS
-          
-      - name: "Import Certificate: Development"
-        uses: devbotsxyz/xcode-import-certificate@master
-        with:
-          certificate-data: ${{ secrets.DEVELOPMENT_CERTIFICATE_DATA }}
-          certificate-passphrase: ${{ secrets.DEVELOPMENT_CERTIFICATE_PASSPHRASE }}
-          keychain-password: ${{ secrets.KEYCHAIN_PASSWORD }}
+          use-xcframeworks: true
 
-      - name: Run Tests
-        uses: devbotsxyz/xcode-test@master
 ```
 
 ## License and Contributions
 
-This Action is licensed under the [MIT](LICENSE) license. Contributions are very much welcome and encouraged but we would like to ask to file an issue before submitting pull requests. 
+This Action is licensed under the [MIT](LICENSE) license. Contributions are very much welcome and encouraged but we would like to ask to file an issue before submitting pull requests.
