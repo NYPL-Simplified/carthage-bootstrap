@@ -16,7 +16,7 @@
     "Xcode",
     "Carthage"
   ],
-  "author": "Stefan Arentz <stefan@devbots.xyz>",
+  "author": "Stefan Arentz <stefan@devbots.xyz>, Ettore Pasquini <ettorepasquini@icloud.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ettore/carthage-bootstrap/issues"
