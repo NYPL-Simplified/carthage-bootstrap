@@ -24,23 +24,23 @@ const execa = require('execa');
 
 const parseConfiguration = () => {
     const configuration = {
-        verbose: core.getInput("verbose") === "true",
-        noUseBinaries: core.getInput("no-use-binaries") === "true",
-        useXCFrameworks: core.getInput("use-xcframeworks") === "true",
-        platform: core.getInput("platform"),
-        gitHubToken: core.getInput("github-token", {required: true}), // Not required when using SSH?
+      platform: core.getInput("platform"),
+      useXCFrameworks: core.getInput("use-xcframeworks"),
+      noUseBinaries: core.getInput("no-use-binaries"),
+      verbose: core.getInput("verbose"),
+      gitHubToken: core.getInput("github-token", {required: true}), // Not required when using SSH?
     };
     return configuration;
 };
 
 
-const carthageBootstrap = async ({platform, noUseBinaries, useXCFrameworks, verbose, gitHubToken}) => {
+const carthageBootstrap = async ({platform, useXCFrameworks, noUseBinaries, verbose, gitHubToken}) => {
     let options = [];
-    if (useXCFrameworks === "true") {
-      options = [...options, "--use-xcframeworks"];
-    }
     if (platform !== "") {
         options = [...options, "--platform", platform];
+    }
+    if (useXCFrameworks === "true") {
+      options = [...options, "--use-xcframeworks"];
     }
     if (verbose === "true") {
         options = [...options, "--verbose"];
